@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Olumide Omonijo — Web3 Community Manager</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Syne+Mono&display=swap" rel="stylesheet">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Syne+Mono&display=swap');
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Syne',sans-serif;background:#FAF9F6;color:#191920;min-height:100vh;}
+.container{max-width:720px;margin:0 auto;padding:0 28px;}
+nav{display:flex;align-items:center;justify-content:space-between;padding:22px 0;border-bottom:1px solid #E5E3DC;flex-wrap:wrap;gap:10px;}
+.nav-id{font-family:'Syne Mono',monospace;font-size:12px;color:#009473;letter-spacing:0.1em;}
+.nav-links{display:flex;gap:18px;flex-wrap:wrap;}
+.nav-links a{font-size:11px;letter-spacing:0.06em;color:#6C6C78;text-decoration:none;text-transform:uppercase;transition:color 0.2s;}
+.nav-links a:hover{color:#191920;}
+.hero{padding:80px 0 64px;border-bottom:1px solid #E5E3DC;}
+.status-bar{display:inline-flex;align-items:center;gap:8px;border:1px solid #E5E3DC;border-radius:2px;padding:6px 14px;margin-bottom:36px;}
+.status-dot{width:6px;height:6px;border-radius:50%;background:#009473;animation:blink 1.8s ease-in-out infinite;}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.2}}
+.status-text{font-family:'Syne Mono',monospace;font-size:10px;letter-spacing:0.12em;color:#009473;text-transform:uppercase;}
+.hero-name{font-size:clamp(48px,9vw,76px);font-weight:800;letter-spacing:-0.04em;line-height:0.92;margin-bottom:8px;}
+.hero-name .accent{color:#009473;}
+.hero-surname{font-size:clamp(48px,9vw,76px);font-weight:400;letter-spacing:-0.04em;line-height:0.92;color:#A6A6AE;margin-bottom:32px;}
+.hero-role{display:flex;align-items:center;gap:12px;margin-bottom:20px;}
+.role-line{width:32px;height:1px;background:#009473;}
+.role-text{font-family:'Syne Mono',monospace;font-size:12px;letter-spacing:0.08em;color:#75757F;text-transform:uppercase;}
+.hero-desc{font-size:15px;color:#75757F;line-height:1.75;max-width:520px;font-weight:400;margin-bottom:40px;}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap;}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;font-family:'Syne',sans-serif;font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;border-radius:2px;transition:all 0.2s;cursor:pointer;}
+.btn-solid{background:#009473;color:#FAF9F6;border:1px solid #009473;}
+.btn-solid:hover{background:#00A884;}
+.btn-outline{background:transparent;color:#191920;border:1px solid #CBC9C2;}
+.btn-outline:hover{border-color:#6C6C78;}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid #E5E3DC;border-bottom:1px solid #E5E3DC;}
+.stat{padding:28px 0;border-right:1px solid #E5E3DC;padding-right:16px;padding-left:16px;}
+.stat:first-child{padding-left:0;}
+.stat:last-child{border-right:none;}
+.stat-num{font-size:30px;font-weight:800;letter-spacing:-0.04em;line-height:1;color:#191920;margin-bottom:6px;}
+.stat-num .hi{color:#009473;}
+.stat-label{font-family:'Syne Mono',monospace;font-size:9px;letter-spacing:0.1em;color:#A6A6AE;text-transform:uppercase;}
+section{padding:56px 0;border-bottom:1px solid #E5E3DC;}
+section:last-of-type{border-bottom:none;}
+.sec-header{display:flex;align-items:center;gap:16px;margin-bottom:32px;}
+.sec-tag{font-family:'Syne Mono',monospace;font-size:10px;color:#009473;letter-spacing:0.12em;text-transform:uppercase;white-space:nowrap;}
+.sec-line{flex:1;height:1px;background:#E5E3DC;}
+.exp-item{border:1px solid #E5E3DC;border-radius:4px;padding:24px;margin-bottom:12px;transition:border-color 0.2s;position:relative;overflow:hidden;}
+.exp-item::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:#009473;}
+.exp-item.dim::before{background:#CBC9C2;}
+.exp-item.volunteer::before{background:#A87515;}
+.exp-item:hover{border-color:#CBC9C2;}
+.exp-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;gap:12px;}
+.exp-org{font-size:16px;font-weight:700;color:#191920;margin-bottom:3px;}
+.exp-role{font-family:'Syne Mono',monospace;font-size:11px;color:#009473;letter-spacing:0.06em;}
+.exp-role.muted{color:#6C6C78;}
+.exp-role.gold{color:#A87515;}
+.exp-date{font-family:'Syne Mono',monospace;font-size:10px;color:#A6A6AE;letter-spacing:0.08em;white-space:nowrap;padding-top:2px;text-align:right;}
+.exp-body{font-size:13px;color:#6C6C78;line-height:1.7;margin-bottom:16px;}
+.tags{display:flex;flex-wrap:wrap;gap:7px;}
+.tag{font-family:'Syne Mono',monospace;font-size:10px;letter-spacing:0.06em;padding:4px 11px;border-radius:2px;border:1px solid #E5E3DC;color:#6C6C78;background:transparent;text-transform:uppercase;}
+.tag-hi{border-color:#009473;color:#009473;}
+.tag-amber{border-color:#C89345;color:#B57714;}
+.tag-gold{border-color:#8A6420;color:#A87515;}
+.skill-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:36px;}
+.skill-card{border:1px solid #E5E3DC;border-radius:4px;padding:22px;transition:border-color 0.2s;}
+.skill-card:hover{border-color:#CBC9C2;}
+.skill-num{font-family:'Syne Mono',monospace;font-size:10px;color:#CBC9C2;letter-spacing:0.1em;margin-bottom:10px;}
+.skill-title{font-size:13px;font-weight:700;color:#191920;margin-bottom:12px;}
+.skill-tags{display:flex;flex-wrap:wrap;gap:6px;}
+.skill-tag{font-family:'Syne Mono',monospace;font-size:10px;padding:4px 9px;border-radius:2px;background:#EFEDE7;color:#6C6C78;letter-spacing:0.04em;}
+.chains-wrap{margin-top:0;}
+.chains-section-label{font-family:'Syne Mono',monospace;font-size:10px;color:#A6A6AE;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:18px;}
+.ecosystem-group{margin-bottom:20px;}
+.eco-category{font-family:'Syne Mono',monospace;font-size:9px;color:#CBC9C2;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:9px;padding-left:2px;}
+.chains{display:flex;flex-wrap:wrap;gap:7px;}
+.chain{display:flex;align-items:center;gap:7px;border:1px solid #E5E3DC;border-radius:2px;padding:6px 12px;font-family:'Syne Mono',monospace;font-size:10px;color:#6C6C78;transition:border-color 0.2s,color 0.2s;}
+.chain:hover{border-color:#CBC9C2;color:#191920;}
+.chain-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;}
+.edu-item{border:1px solid #E5E3DC;border-radius:4px;padding:24px;margin-bottom:12px;transition:border-color 0.2s;position:relative;overflow:hidden;}
+.edu-item::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:#534AB7;}
+.edu-item.academic::before{background:#009473;}
+.edu-item:hover{border-color:#CBC9C2;}
+.edu-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;gap:12px;}
+.edu-inst{font-size:15px;font-weight:700;color:#191920;margin-bottom:3px;}
+.edu-loc{font-size:11px;color:#6C6C78;margin-bottom:6px;}
+.edu-degree{font-family:'Syne Mono',monospace;font-size:11px;color:#5D53C7;letter-spacing:0.06em;}
+.edu-degree.academic{color:#009473;}
+.edu-date{font-family:'Syne Mono',monospace;font-size:10px;color:#A6A6AE;letter-spacing:0.08em;white-space:nowrap;padding-top:2px;}
+.edu-body{font-size:13px;color:#6C6C78;line-height:1.7;margin-bottom:14px;}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.contact-card{border:1px solid #E5E3DC;border-radius:4px;padding:20px;text-decoration:none;display:flex;align-items:center;gap:14px;transition:all 0.2s;}
+.contact-card:hover{border-color:#009473;}
+.contact-icon-wrap{width:40px;height:40px;border-radius:4px;background:#EFEDE7;border:1px solid #E5E3DC;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0;}
+.contact-platform{font-size:13px;font-weight:700;color:#191920;margin-bottom:2px;}
+.contact-handle{font-family:'Syne Mono',monospace;font-size:10px;color:#A6A6AE;letter-spacing:0.05em;}
+footer{padding:28px 0;display:flex;align-items:center;justify-content:space-between;}
+footer span{font-family:'Syne Mono',monospace;font-size:10px;color:#CBC9C2;letter-spacing:0.08em;}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <nav>
+    <span class="nav-id">OO — WEB3 CM</span>
+    <div class="nav-links">
+      <a href="#active">Active Roles</a>
+      <a href="#ambassador">Ambassador</a>
+      <a href="#community">Community</a>
+      <a href="#skills">Skills</a>
+      <a href="#education">Education</a>
+      <a href="#former">Former Roles</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="status-bar">
+      <span class="status-dot"></span>
+      <span class="status-text">Available for hire</span>
+    </div>
+    <div class="hero-name"><span class="accent">Olumide</span></div>
+    <div class="hero-surname">Omonijo</div>
+    <div class="hero-role">
+      <span class="role-line"></span>
+      <span class="role-text">Web3 Community Manager &amp; Moderator</span>
+    </div>
+    <p class="hero-desc">In Web3 since 2019. Built and managed communities across DeFi, GameFi, and multi-chain ecosystems — from Discord moderation and member onboarding to content creation and community growth. Deep hands-on experience with dApps and protocols across EVM, SVM, and non-EVM chains.</p>
+    <div class="hero-cta">
+      <a href="https://twitter.com/Cryptodonnet" class="btn btn-solid" target="_blank">Twitter / X ↗</a>
+      <a href="https://t.me/OluDeeD0n" class="btn btn-outline" target="_blank">Telegram</a>
+      <a href="mailto:cryptodonnetwork@gmail.com" class="btn btn-outline">Email</a>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-num">100<span class="hi">K+</span></div>
+      <div class="stat-label">Members managed</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num"><span class="hi">5</span>+</div>
+      <div class="stat-label">Years in Web3</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num"><span class="hi">2K</span>+</div>
+      <div class="stat-label">WA subscribers</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">Multi</div>
+      <div class="stat-label">Chain native</div>
+    </div>
+  </div>
+
+  <!-- ACTIVE ROLES / PROJECTS -->
+  <section id="active">
+    <div class="sec-header">
+      <span class="sec-tag">Active Roles / Projects</span>
+      <span class="sec-line"></span>
+    </div>
+
+    <div class="exp-item volunteer">
+      <div class="exp-top">
+        <div>
+          <div class="exp-org">Sumex Lab</div>
+          <div class="exp-role gold">Community Moderator</div>
+        </div>
+        <div class="exp-date">Current</div>
+      </div>
+      <p class="exp-body">Promoted to Community Moderator at Sumex Lab after demonstrating strong community engagement as a volunteer. Responsible for enforcing community guidelines, supporting members, managing day-to-day moderation, and helping maintain a healthy, active ecosystem.</p>
+      <div class="tags">
+        <span class="tag tag-gold">Moderator</span>
+        <span class="tag tag-gold">Community Support</span>
+        <span class="tag">Moderation</span>
+        <span class="tag">Anti-scam</span>
+        <span class="tag">Engagement</span>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-top">
+        <div>
+          <div class="exp-org">GiftedHands Protocol</div>
+          <div class="exp-role">Community Manager</div>
+        </div>
+        <div class="exp-date">2023 — Present</div>
+      </div>
+      <p class="exp-body">Scaled and managed a community of over 100,000 members across Telegram and Discord. Oversaw daily moderation, hosted AMA sessions, designed onboarding flows, and produced regular content to maintain engagement across all market conditions.</p>
+      <div class="tags">
+        <span class="tag tag-hi">100K+ members</span>
+        <span class="tag tag-hi">Discord</span>
+        <span class="tag tag-hi">Telegram</span>
+        <span class="tag">AMA Hosting</span>
+        <span class="tag">Onboarding</span>
+        <span class="tag">Content</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- AMBASSADOR ROLES -->
+  <section id="ambassador">
+    <div class="sec-header">
+      <span class="sec-tag">Ambassador Roles</span>
+      <span class="sec-line"></span>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-top">
+        <div>
+          <div class="exp-org">Zerion</div>
+          <div class="exp-role muted">Community OG · Part-time</div>
+        </div>
+        <div class="exp-date">Current</div>
+      </div>
+      <p class="exp-body">Representing Zerion's all-in-one DeFi portfolio and wallet platform as a Community OG. Creating awareness, onboarding new users, and advocating for the product across Web3 communities and social channels.</p>
+      <div class="tags">
+        <span class="tag tag-amber">DeFi</span>
+        <span class="tag tag-amber">Wallet</span>
+        <span class="tag">Advocacy</span>
+        <span class="tag">User Onboarding</span>
+        <span class="tag">Multi-chain</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMMUNITY BUILDING -->
+  <section id="community">
+    <div class="sec-header">
+      <span class="sec-tag">Community Building</span>
+      <span class="sec-line"></span>
+    </div>
+
+    <div class="exp-item dim">
+      <div class="exp-top">
+        <div>
+          <div class="exp-org">X (Twitter) — Web3 Page</div>
+          <div class="exp-role muted">Independent Community Builder</div>
+        </div>
+        <div class="exp-date">2019 — Present</div>
+      </div>
+      <p class="exp-body">Built a strong Web3-focused presence on X, sharing crypto insights, trade analysis, and ecosystem updates. Previous account was taken down; currently rebuilding a more focused, Web3-oriented page with quality content and community engagement.</p>
+      <div class="tags">
+        <span class="tag">Twitter / X</span>
+        <span class="tag">Content</span>
+        <span class="tag">Crypto Alpha</span>
+        <span class="tag">Rebuilding</span>
+      </div>
+    </div>
+
+    <div class="exp-item dim">
+      <div class="exp-top">
+        <div>
+          <div class="exp-org">WhatsApp Channel</div>
+          <div class="exp-role muted">Channel Owner &amp; Curator</div>
+        </div>
+        <div class="exp-date">Ongoing</div>
+      </div>
+      <p class="exp-body">Owns and manages a WhatsApp channel with over 2,000 subscribers. Consistently delivers crypto insights, airdrop updates, trade signals, and Web3 educational content to an engaged audience.</p>
+      <div class="tags">
+        <span class="tag tag-hi">2K+ subscribers</span>
+        <span class="tag">WhatsApp</span>
+        <span class="tag">Airdrops</span>
+        <span class="tag">Trade Updates</span>
+        <span class="tag">Web3 Content</span>
+      </div>
+    </div>
+
+    <div class="exp-item dim">
+      <div class="exp-top">
+        <div>
+          <div class="exp-org">Telegram Communities</div>
+          <div class="exp-role muted">Community Builder</div>
+        </div>
+        <div class="exp-date">2019 — Present</div>
+      </div>
+      <p class="exp-body">Built and managed multiple crypto communities across Telegram since entering the space during the 2019–2020 period. Active across DeFi and GameFi ecosystems, sharing insights and fostering engaged member groups.</p>
+      <div class="tags">
+        <span class="tag">Telegram</span>
+        <span class="tag">DeFi</span>
+        <span class="tag">GameFi</span>
+        <span class="tag">Community Mgmt</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="sec-header">
+      <span class="sec-tag">Core Skills</span>
+      <span class="sec-line"></span>
+    </div>
+    <div class="skill-grid">
+      <div class="skill-card">
+        <div class="skill-num">01</div>
+        <div class="skill-title">Discord Moderation</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Channel mgmt</span>
+          <span class="skill-tag">Anti-scam</span>
+          <span class="skill-tag">Bot setup</span>
+          <span class="skill-tag">Rule enforcement</span>
+          <span class="skill-tag">Ticket support</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-num">02</div>
+        <div class="skill-title">Community Growth</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Retention</span>
+          <span class="skill-tag">Campaigns</span>
+          <span class="skill-tag">AMAs</span>
+          <span class="skill-tag">Partnerships</span>
+          <span class="skill-tag">Sentiment tracking</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-num">03</div>
+        <div class="skill-title">Content Creation</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Announcements</span>
+          <span class="skill-tag">Newsletters</span>
+          <span class="skill-tag">Twitter threads</span>
+          <span class="skill-tag">Ed. content</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-num">04</div>
+        <div class="skill-title">Member Onboarding</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Welcome flows</span>
+          <span class="skill-tag">FAQ systems</span>
+          <span class="skill-tag">Role setup</span>
+          <span class="skill-tag">User support</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="chains-wrap">
+      <div class="chains-section-label">Chains &amp; Ecosystems</div>
+
+      <div class="ecosystem-group">
+        <div class="eco-category">EVM Layer 1s</div>
+        <div class="chains">
+          <div class="chain"><span class="chain-dot" style="background:#627EEA"></span>Ethereum</div>
+          <div class="chain"><span class="chain-dot" style="background:#E84142"></span>Avalanche</div>
+          <div class="chain"><span class="chain-dot" style="background:#F0B90B"></span>BNB Chain</div>
+          <div class="chain"><span class="chain-dot" style="background:#8247E5"></span>Polygon</div>
+          <div class="chain"><span class="chain-dot" style="background:#CC3333"></span>Fantom</div>
+          <div class="chain"><span class="chain-dot" style="background:#00BFFF"></span>Hyperliquid</div>
+        </div>
+      </div>
+
+      <div class="ecosystem-group">
+        <div class="eco-category">EVM L2s</div>
+        <div class="chains">
+          <div class="chain"><span class="chain-dot" style="background:#FF6B35"></span>Optimism</div>
+          <div class="chain"><span class="chain-dot" style="background:#28A0F0"></span>Arbitrum</div>
+          <div class="chain"><span class="chain-dot" style="background:#0052FF"></span>Base</div>
+          <div class="chain"><span class="chain-dot" style="background:#1B53CD"></span>zkSync</div>
+          <div class="chain"><span class="chain-dot" style="background:#7B3FE4"></span>Starknet</div>
+        </div>
+      </div>
+
+      <div class="ecosystem-group">
+        <div class="eco-category">SVMs</div>
+        <div class="chains">
+          <div class="chain"><span class="chain-dot" style="background:#9945FF"></span>Solana</div>
+          <div class="chain"><span class="chain-dot" style="background:#00C2FF"></span>Eclipse</div>
+          <div class="chain"><span class="chain-dot" style="background:#7C4DFF"></span>Sonic SVM</div>
+        </div>
+      </div>
+
+      <div class="ecosystem-group">
+        <div class="eco-category">Non-EVM Layer 1s</div>
+        <div class="chains">
+          <div class="chain"><span class="chain-dot" style="background:#29B6AF"></span>Cosmos</div>
+          <div class="chain"><span class="chain-dot" style="background:#E6007A"></span>Polkadot</div>
+          <div class="chain"><span class="chain-dot" style="background:#00B2FF"></span>Aptos</div>
+          <div class="chain"><span class="chain-dot" style="background:#6FBCF0"></span>Sui</div>
+          <div class="chain"><span class="chain-dot" style="background:#00D4AA"></span>Algorand</div>
+          <div class="chain"><span class="chain-dot" style="background:#FF4500"></span>Near</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <div class="sec-header">
+      <span class="sec-tag">Education</span>
+      <span class="sec-line"></span>
+    </div>
+
+    <div class="edu-item academic">
+      <div class="edu-top">
+        <div>
+          <div class="edu-inst">B.Agric — Agricultural Extension &amp; Rural/Community Development</div>
+          <div class="edu-loc">University of Ilorin, Ilorin, Nigeria</div>
+          <div class="edu-degree academic">Second Class Honours (Upper Division)</div>
+        </div>
+        <div class="edu-date">Bachelor's Degree</div>
+      </div>
+      <p class="edu-body">Bachelor of Agriculture from the University of Ilorin, with a focus on Agricultural Extension and Rural/Community Development. Built a strong academic foundation in community engagement, development theory, and stakeholder communication — skills directly transferable to managing and growing online communities at scale.</p>
+      <div class="tags">
+        <span class="tag tag-hi">B.Agric</span>
+        <span class="tag tag-hi">2:1 Upper Division</span>
+        <span class="tag">University of Ilorin</span>
+        <span class="tag">Community Development</span>
+        <span class="tag">Stakeholder Engagement</span>
+      </div>
+    </div>
+
+    <div class="edu-item">
+      <div class="edu-top">
+        <div>
+          <div class="edu-inst">Cryptocurrency &amp; Web3 — Self-directed</div>
+          <div class="edu-degree">Continuous Learning · DeFi, GameFi, Ecosystems</div>
+        </div>
+        <div class="edu-date">2019 — Present</div>
+      </div>
+      <p class="edu-body">Entered the crypto space during the 2019–2020 Covid period and has since built deep, hands-on knowledge of the broader Web3 ecosystem. Actively explores protocols, chains, and dApps — understanding how they function from a user and community perspective across EVM, SVM, and non-EVM environments.</p>
+      <div class="tags">
+        <span class="tag" style="border-color:#534AB7;color:#5D53C7;">DeFi</span>
+        <span class="tag" style="border-color:#534AB7;color:#5D53C7;">GameFi</span>
+        <span class="tag" style="border-color:#534AB7;color:#5D53C7;">dApp Usage</span>
+        <span class="tag" style="border-color:#534AB7;color:#5D53C7;">Tokenomics</span>
+        <span class="tag" style="border-color:#534AB7;color:#5D53C7;">Web3 Economics</span>
+      </div>
+    </div>
+
+    <div class="edu-item">
+      <div class="edu-top">
+        <div>
+          <div class="edu-inst">Quiz Club — Active Member</div>
+          <div class="edu-degree">Cross-sector Knowledge &amp; Awareness</div>
+        </div>
+        <div class="edu-date">Ongoing</div>
+      </div>
+      <p class="edu-body">Active participation in a Quiz Club has sharpened awareness across diverse sectors — finance, technology, current affairs, and beyond. This continuous learning habit supports adaptability and informed thinking in a fast-evolving industry.</p>
+      <div class="tags">
+        <span class="tag" style="border-color:#534AB7;color:#5D53C7;">Cross-sector</span>
+        <span class="tag" style="border-color:#534AB7;color:#5D53C7;">Adaptability</span>
+        <span class="tag" style="border-color:#534AB7;color:#5D53C7;">Finance</span>
+        <span class="tag" style="border-color:#534AB7;color:#5D53C7;">Technology</span>
+      </div>
+    </div>
+
+    <div class="edu-item">
+      <div class="edu-top">
+        <div>
+          <div class="edu-inst">Economics &amp; Crypto Fundamentals</div>
+          <div class="edu-degree">Self-study · Macro, Markets, On-chain</div>
+        </div>
+        <div class="edu-date">Ongoing</div>
+      </div>
+      <p class="edu-body">Developed solid foundational knowledge of cryptocurrency markets, macroeconomic principles, and on-chain dynamics through consistent self-study. Applies this understanding to community education, content creation, and user onboarding across Web3 projects.</p>
+      <div class="tags">
+        <span class="tag" style="border-color:#534AB7;color:#5D53C7;">Macroeconomics</span>
+        <span class="tag" style="border-color:#534AB7;color:#5D53C7;">On-chain</span>
+        <span class="tag" style="border-color:#534AB7;color:#5D53C7;">Market Analysis</span>
+        <span class="tag" style="border-color:#534AB7;color:#5D53C7;">Self-study</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FORMER ROLES -->
+  <section id="former">
+    <div class="sec-header">
+      <span class="sec-tag">Former Roles</span>
+      <span class="sec-line"></span>
+    </div>
+
+    <div class="exp-item dim">
+      <div class="exp-top">
+        <div>
+          <div class="exp-org">Betterment Digital</div>
+          <div class="exp-role muted">Community Manager</div>
+        </div>
+        <div class="exp-date">Previous role</div>
+      </div>
+      <p class="exp-body">Managed community operations and member engagement for Betterment Digital. Developed user engagement strategies, handled conflict resolution, and maintained healthy community dynamics across platforms.</p>
+      <div class="tags">
+        <span class="tag">Community Ops</span>
+        <span class="tag">Engagement</span>
+        <span class="tag">Conflict Resolution</span>
+        <span class="tag">Growth Strategy</span>
+      </div>
+    </div>
+
+    <div class="exp-item dim">
+      <div class="exp-top">
+        <div>
+          <div class="exp-org">FluxBeam DEX</div>
+          <div class="exp-role muted">Community Moderator</div>
+        </div>
+        <div class="exp-date">Until ~2023</div>
+      </div>
+      <p class="exp-body">Moderated the FluxBeam DEX community on Solana. Enforced community guidelines, supported users with onboarding and technical queries, and helped maintain a safe, scam-free environment for traders and liquidity providers.</p>
+      <div class="tags">
+        <span class="tag">Solana / SVM</span>
+        <span class="tag">DEX Community</span>
+        <span class="tag">Moderation</span>
+        <span class="tag">Anti-scam</span>
+        <span class="tag">User Support</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="sec-header">
+      <span class="sec-tag">Contact</span>
+      <span class="sec-line"></span>
+    </div>
+    <p style="font-size:14px;color:#6C6C78;margin-bottom:24px;max-width:420px;line-height:1.7;">Open to community manager, moderator, and community lead roles across Web3 protocols, DAOs, and DeFi projects.</p>
+    <div class="contact-grid">
+      <a href="https://twitter.com/Cryptodonnet" target="_blank" class="contact-card">
+        <div class="contact-icon-wrap">𝕏</div>
+        <div>
+          <div class="contact-platform">Twitter / X</div>
+          <div class="contact-handle">@Cryptodonnet</div>
+        </div>
+      </a>
+      <a href="https://t.me/OluDeeD0n" target="_blank" class="contact-card">
+        <div class="contact-icon-wrap">✈️</div>
+        <div>
+          <div class="contact-platform">Telegram</div>
+          <div class="contact-handle">OluDeeD0n</div>
+        </div>
+      </a>
+      <a href="https://www.linkedin.com/in/oyindeedon/" target="_blank" class="contact-card">
+        <div class="contact-icon-wrap">in</div>
+        <div>
+          <div class="contact-platform">LinkedIn</div>
+          <div class="contact-handle">oyindeedon</div>
+        </div>
+      </a>
+      <a href="mailto:cryptodonnetwork@gmail.com" class="contact-card">
+        <div class="contact-icon-wrap">✉️</div>
+        <div>
+          <div class="contact-platform">Email</div>
+          <div class="contact-handle">cryptodonnetwork@gmail.com</div>
+        </div>
+      </a>
+      <a href="https://github.com/Oludeedon" target="_blank" class="contact-card">
+        <div class="contact-icon-wrap">GH</div>
+        <div>
+          <div class="contact-platform">GitHub</div>
+          <div class="contact-handle">Oludeedon</div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    <span>© 2026 Olumide Omonijo</span>
+    <span>Web3 Community Manager</span>
+  </footer>
+
+</div>
+</body>
+</html>
