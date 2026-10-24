@@ -51,6 +51,11 @@ section:last-of-type{border-bottom:none;}
 .exp-item.dim::before{background:#CBC9C2;}
 .exp-item.volunteer::before{background:#A87515;}
 .exp-item:hover{border-color:#CBC9C2;}
+.article-item{border:1px solid #E5E3DC;border-radius:4px;padding:20px 24px;margin-bottom:12px;transition:border-color 0.2s,transform 0.2s;position:relative;overflow:hidden;display:block;text-decoration:none;}
+.article-item::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:#009473;}
+.article-item:hover{border-color:#CBC9C2;background:rgba(0,148,115,0.04);}
+.article-title{font-size:15px;font-weight:700;color:#191920;margin:0 0 6px;}
+.article-meta{font-family:'Syne Mono',monospace;font-size:10px;letter-spacing:0.06em;color:#6C6C78;text-transform:uppercase;}
 .exp-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;gap:12px;}
 .exp-org{font-size:16px;font-weight:700;color:#191920;margin-bottom:3px;}
 .exp-role{font-family:'Syne Mono',monospace;font-size:11px;color:#009473;letter-spacing:0.06em;}
@@ -111,6 +116,7 @@ footer span{font-family:'Syne Mono',monospace;font-size:10px;color:#CBC9C2;lette
       <a href="#skills">Skills</a>
       <a href="#education">Education</a>
       <a href="#former">Former Roles</a>
+      <a href="#articles">Articles</a>
       <a href="#contact">Contact</a>
     </div>
   </nav>
@@ -493,6 +499,35 @@ footer span{font-family:'Syne Mono',monospace;font-size:10px;color:#CBC9C2;lette
   </section>
 
   <!-- CONTACT -->
+
+  <!-- ARTICLES -->
+  <section id="articles">
+    <div class="sec-header">
+      <span class="sec-tag">Articles</span>
+      <span class="sec-line"></span>
+    </div>
+
+    <a class="article-item" href="https://x.com/Cryptodonnet/status/2067433633774817789" target="_blank" rel="noopener">
+      <div class="article-title">How Quip Network Is Making Quantum Computing Accessible To Everyone</div>
+      <div class="article-meta">Quip Network · Read on X ↗</div>
+    </a>
+
+    <a class="article-item" href="https://x.com/Cryptodonnet/status/2069473709404913787" target="_blank" rel="noopener">
+      <div class="article-title">How Quantum Computing Could Transform the Future of Crypto Mining</div>
+      <div class="article-meta">Quantum × Crypto Mining · Read on X ↗</div>
+    </a>
+
+    <a class="article-item" href="https://x.com/Cryptodonnet/status/2069817852698447965" target="_blank" rel="noopener">
+      <div class="article-title">Sumex: The Ultimate All-in-One Web3 Aggregator for Trading, Investing, and Portfolio Management</div>
+      <div class="article-meta">Sumex · Read on X ↗</div>
+    </a>
+
+    <a class="article-item" href="https://x.com/Cryptodonnet/status/2071658389269361127" target="_blank" rel="noopener">
+      <div class="article-title">Sumex Sigma Points: Every Action Counts On Sumex</div>
+      <div class="article-meta">Sumex · Read on X ↗</div>
+    </a>
+  </section>
+
   <section id="contact">
     <div class="sec-header">
       <span class="sec-tag">Contact</span>
